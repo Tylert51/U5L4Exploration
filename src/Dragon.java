@@ -24,12 +24,10 @@ public class Dragon {
                 health = 0;
             }
 
-            String output;
+            String output = "The dragon takes " + dmg + " damage and how has " + health + " health";;
 
-            if (isAlive) {
-                output = "The dragon takes " + dmg + " damage and how has " + health + " health";
-            } else {
-                output = "The dragon has been slayed!";
+            if (!isAlive) {
+                output += "\nThe dragon has been slayed!";
             }
 
             System.out.println(output);
@@ -39,11 +37,14 @@ public class Dragon {
         }
     }
 
-    public void attack() {
+    public int attack() {
         int attackDmg = strength * level;
         totalAttackDmg += attackDmg;
+        return attackDmg;
+    }
 
-        System.out.println("The dragon attacks for " + attackDmg + " damage!");
+    public void attackLine() {
+        System.out.println("The dragon attacks for " + attack() + " health points!");
 
         if (totalAttackDmg >= 50) {
             totalAttackDmg = 0;
@@ -80,15 +81,14 @@ public class Dragon {
         return !isAlive;
     }
 
+    public String toString() {
+        String output = "Dragon:" +
+                "\nStrength = " + strength +
+                "\nHealth = " + getHealth() +
+                "\nLevel = " + getLevel() +
+                "\nDead = " + isDead() +
+                "\nAttack Damage = " + totalAttackDmg;
 
-    /*
-    Dragon:
-    Strength = 1
-    Health = 100
-    Level = 1
-    Dead = false
-    Attack Damage = 0
-
-     */
-
+        return output;
+    }
 }
